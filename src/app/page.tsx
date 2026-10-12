@@ -6,7 +6,7 @@ async function getYear() {
   return new Date().getFullYear();
 }
 
-const GITHUB = "https://github.com/henriquegabrieldesouza31-boop";
+const GITHUB = "https://github.com/henriquedesoza";
 
 type Project = {
   name: string;
@@ -220,7 +220,7 @@ export default async function Home() {
               rel="noopener noreferrer"
               className="rounded-full bg-neutral-900 px-4 py-2 text-sm font-medium text-white"
             >
-              henriquegabrieldesouza31-boop
+              henriquedesoza
             </a>
           </div>
         </section>
