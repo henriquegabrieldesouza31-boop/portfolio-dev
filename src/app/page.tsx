@@ -8,7 +8,25 @@ async function getYear() {
 
 const GITHUB = "https://github.com/henriquegabrieldesouza31-boop";
 
-const projects = [
+type Project = {
+  name: string;
+  description: string;
+  stack: string[];
+  demo: string;
+  image: string;
+  /** omitted when the repo is private */
+  repo?: string;
+};
+
+const projects: Project[] = [
+  {
+    name: "Kōgen — Omakase",
+    description:
+      "Site de restaurante japonês premium, bilíngue PT/EN. Página única com rolagem, menu com âncoras e reserva de mesa. O mais completo dos meus projetos.",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS"],
+    demo: "https://kogen-three.vercel.app",
+    image: "/proj-kogen.jpg",
+  },
   {
     name: "Landing Finora",
     description:
@@ -155,14 +173,16 @@ export default async function Home() {
                   >
                     Ver ao vivo
                   </a>
-                  <a
-                    href={project.repo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-neutral-500 underline underline-offset-4"
-                  >
-                    Código
-                  </a>
+                  {project.repo && (
+                    <a
+                      href={project.repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-neutral-500 underline underline-offset-4"
+                    >
+                      Código
+                    </a>
+                  )}
                 </div>
               </article>
             ))}
