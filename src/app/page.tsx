@@ -1,39 +1,52 @@
+import Image from "next/image";
+
 // "use cache": ano calculado no build, evita valor instável no prerender (Next 16)
 async function getYear() {
   "use cache";
   return new Date().getFullYear();
 }
 
+const GITHUB = "https://github.com/henriquegabrieldesouza31-boop";
+
 const projects = [
   {
-    name: "Vitrine Shop",
+    name: "Landing Finora",
     description:
-      "E-commerce de moda com carrinho, busca e checkout simulado, focado em performance e acessibilidade.",
-    stack: ["Next.js", "TypeScript", "Tailwind"],
+      "Landing page de lançamento para app de finanças pessoais. Tema dark, hero com CTA, 3 features e seção de preços com 3 planos.",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS"],
+    repo: `${GITHUB}/landing-financeiro`,
+    demo: "https://landing-financeiro.vercel.app",
+    image: "/proj-finora.png",
   },
   {
-    name: "Painel Métrica",
+    name: "Site Clínica",
     description:
-      "Dashboard de analytics com gráficos interativos, filtros por período e tema claro/escuro.",
-    stack: ["React", "TypeScript", "Recharts"],
+      "Site institucional de clínica odontológica. Tema claro, serviços, depoimentos e formulário de contato com validação.",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS"],
+    repo: `${GITHUB}/site-clinica`,
+    demo: "https://site-clinica-topaz.vercel.app",
+    image: "/proj-clinica.png",
   },
   {
-    name: "Landing Nimbus",
+    name: "Portfólio Dev",
     description:
-      "Landing page de produto para um SaaS de produtividade, com animações leves e SEO técnico.",
-    stack: ["Next.js", "Tailwind", "SEO"],
+      "Este site. Portfólio pessoal de dev front-end construído com Next.js e Tailwind CSS, publicado no Vercel.",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS"],
+    repo: `${GITHUB}/portfolio-dev`,
+    demo: "https://portfolio-dev-rouge-six.vercel.app",
+    image: "/henrique.png",
   },
 ];
 
 const skills = [
-  "HTML",
-  "CSS",
   "TypeScript",
   "React",
   "Next.js",
   "Tailwind CSS",
+  "HTML",
+  "CSS",
   "Git",
-  "Acessibilidade",
+  "Vercel",
 ];
 
 const navLinks = [
@@ -47,8 +60,8 @@ export default async function Home() {
   return (
     <div className="mx-auto flex min-h-screen w-full max-w-3xl flex-col px-6">
       <header className="flex items-center justify-between py-8">
-        <a href="#" className="text-sm font-semibold tracking-tight">
-          AR
+        <a href={GITHUB} className="text-sm font-semibold tracking-tight">
+          HS
         </a>
         <nav>
           <ul className="flex gap-5 text-sm text-neutral-500">
@@ -64,28 +77,47 @@ export default async function Home() {
       </header>
 
       <main className="flex-1">
-        <section className="py-20 sm:py-28">
-          <h1 className="text-5xl font-semibold tracking-tight sm:text-7xl">
-            Ana Ribeiro
+        <section className="py-16 sm:py-24">
+          <Image
+            src="/henrique.png"
+            alt="Foto de Henrique Gabriel de Souza"
+            width={460}
+            height={460}
+            priority
+            className="h-20 w-20 rounded-full object-cover sm:h-24 sm:w-24"
+          />
+          <h1 className="mt-6 text-4xl font-semibold tracking-tight sm:text-6xl">
+            Henrique Gabriel de Souza
           </h1>
           <p className="mt-4 text-lg text-neutral-500 sm:text-xl">
-            Desenvolvedora Front-end
+            Estudante, Freelancer, criador full-end
           </p>
           <p className="mt-6 max-w-xl text-neutral-600">
-            Crio interfaces rápidas, acessíveis e bem detalhadas — do wireframe
-            ao pixel, com React e TypeScript.
+            Construo interfaces e aplicações com React e TypeScript. Aberto a
+            freelas e a oportunidades — vem dar uma olhada nos projetos ou chama
+            no GitHub.
           </p>
           <div className="mt-8 flex gap-4 text-sm font-medium">
-            <a href="#" className="underline underline-offset-4">
+            <a
+              href={GITHUB}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4"
+            >
               GitHub
             </a>
-            <a href="#" className="underline underline-offset-4">
-              LinkedIn
+            <a
+              href={`${GITHUB}?tab=repositories`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4"
+            >
+              Repositórios
             </a>
           </div>
         </section>
 
-        <section id="projetos" className="py-20">
+        <section id="projetos" className="py-16">
           <h2 className="text-sm font-semibold uppercase tracking-widest text-neutral-400">
             Projetos
           </h2>
@@ -95,9 +127,14 @@ export default async function Home() {
                 key={project.name}
                 className="flex flex-col gap-3 rounded-xl border border-neutral-200 p-6"
               >
-                <h3 className="font-semibold tracking-tight">
-                  {project.name}
-                </h3>
+                <Image
+                  src={project.image}
+                  alt={`Prévia do projeto ${project.name}`}
+                  width={460}
+                  height={460}
+                  className="w-full rounded-lg border border-neutral-200 object-cover"
+                />
+                <h3 className="font-semibold tracking-tight">{project.name}</h3>
                 <p className="text-sm text-neutral-600">{project.description}</p>
                 <ul className="flex flex-wrap gap-2 text-xs text-neutral-500">
                   {project.stack.map((tag) => (
@@ -109,18 +146,30 @@ export default async function Home() {
                     </li>
                   ))}
                 </ul>
-                <a
-                  href="#"
-                  className="mt-auto text-sm font-medium underline underline-offset-4"
-                >
-                  Ver projeto
-                </a>
+                <div className="mt-auto flex gap-3 pt-2 text-sm font-medium">
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-4"
+                  >
+                    Ver ao vivo
+                  </a>
+                  <a
+                    href={project.repo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-neutral-500 underline underline-offset-4"
+                  >
+                    Código
+                  </a>
+                </div>
               </article>
             ))}
           </div>
         </section>
 
-        <section id="skills" className="py-20">
+        <section id="skills" className="py-16">
           <h2 className="text-sm font-semibold uppercase tracking-widest text-neutral-400">
             Skills
           </h2>
@@ -136,33 +185,29 @@ export default async function Home() {
           </ul>
         </section>
 
-        <section id="contato" className="py-20">
+        <section id="contato" className="py-16">
           <h2 className="text-sm font-semibold uppercase tracking-widest text-neutral-400">
             Contato
           </h2>
           <p className="mt-6 max-w-xl text-neutral-600">
-            Aberta a oportunidades e conversas sobre front-end. Chame no e-mail
-            ou no LinkedIn.
+            Aberto a freelas e a oportunidades. A melhor forma de falar comigo é
+            pelo GitHub — é lá que estou sempre.
           </p>
           <div className="mt-6 flex flex-wrap items-center gap-4">
             <a
-              href="mailto:ana.ribeiro@example.com"
-              className="font-medium underline underline-offset-4"
-            >
-              ana.ribeiro@example.com
-            </a>
-            <a
-              href="#"
+              href={GITHUB}
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-full bg-neutral-900 px-4 py-2 text-sm font-medium text-white"
             >
-              LinkedIn
+              henriquegabrieldesouza31-boop
             </a>
           </div>
         </section>
       </main>
 
       <footer className="border-t border-neutral-200 py-8 text-sm text-neutral-500">
-        © {year} Ana Ribeiro
+        © {year} Henrique Gabriel de Souza
       </footer>
     </div>
   );

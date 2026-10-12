@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ana Ribeiro — Desenvolvedora Front-end",
+  title: "Henrique Gabriel de Souza — Dev Front-end",
   description:
-    "Portfólio de Ana Ribeiro, desenvolvedora front-end. Projetos em React, Next.js e TypeScript.",
+    "Portfólio de Henrique Gabriel de Souza, dev front-end. Projetos em React, Next.js e TypeScript.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
