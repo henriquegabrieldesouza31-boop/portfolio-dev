@@ -16,6 +16,8 @@ type Project = {
   image: string;
   /** omitted when the repo is private */
   repo?: string;
+  /** renders a "Destaque" badge on the card */
+  featured?: boolean;
 };
 
 const projects: Project[] = [
@@ -26,6 +28,17 @@ const projects: Project[] = [
     stack: ["Next.js", "TypeScript", "Tailwind CSS"],
     demo: "https://kogen-three.vercel.app",
     image: "/proj-kogen.jpg",
+    featured: true,
+  },
+  {
+    name: "loja.br — Marketplace",
+    description:
+      "E-commerce completo em português: catálogo com busca e filtros, carrinho, checkout em etapas e pagamento via Pix, cartão e boleto. Full-stack com banco de dados, autenticação e sessões.",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL"],
+    repo: `${GITHUB}/loja`,
+    demo: "https://loja-kohl-one.vercel.app",
+    image: "/proj-loja.png",
+    featured: true,
   },
   {
     name: "Landing Finora",
@@ -152,7 +165,14 @@ export default async function Home() {
                   height={460}
                   className="w-full rounded-lg border border-neutral-200 object-cover"
                 />
-                <h3 className="font-semibold tracking-tight">{project.name}</h3>
+                <h3 className="font-semibold tracking-tight">
+                  {project.name}
+                  {project.featured && (
+                    <span className="ml-2 align-middle rounded-full bg-neutral-900 px-2 py-0.5 text-xs font-medium text-white">
+                      Destaque
+                    </span>
+                  )}
+                </h3>
                 <p className="text-sm text-neutral-600">{project.description}</p>
                 <ul className="flex flex-wrap gap-2 text-xs text-neutral-500">
                   {project.stack.map((tag) => (
